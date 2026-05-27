@@ -23,7 +23,7 @@ public class PhoneBook {
 
 
     public Contact findByName(String name){
-        if (name.isEmpty() || name == null){
+        if (name == null ||name.isEmpty()){
             throw new IllegalArgumentException("Name can't be empty!");
         }
 
