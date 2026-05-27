@@ -6,16 +6,12 @@ public class Main {
         BankAccount nordeaKunde = new BankAccount(2000, "Peter pan");
         BankAccount danskeBankKunde = new BankAccount(1000, "Lucia C");
 
-        nordeaKunde.deposit(500);
-        nordeaKunde.withdraw(100);
-        System.out.println();
 
         try {
-            nordeaKunde.transfer(danskeBankKunde, 2500);
+           nordeaKunde.bankMenu(nordeaKunde, danskeBankKunde);
         } catch (IllegalArgumentException e) {
             System.out.println("Transfer failed: " + e.getMessage());
         }
-
 
 
 

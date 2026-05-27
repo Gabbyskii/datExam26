@@ -1,6 +1,7 @@
 package opg5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MessageApp {
     private ArrayList<String>messages = new ArrayList<>();
@@ -28,26 +29,25 @@ public class MessageApp {
             System.out.println("1. Send message.");
             System.out.println("2. Show all messages.");
             System.out.println("3. Exit.");
+
             String choice = ui.promptText("\nChoose:");
-
-            switch (choice) {
-
+            switch (choice){
                 case "1" ->{
-                        String msg = ui.promptText("Text ur message:");
-                        add(msg);
-                        System.out.println("Message sent!");
+                    String msg = ui.promptText("Send message: ");
+                    add(msg);
+                    System.out.println("Message sent!");
                 }
-                case "2" -> {
-                    ArrayList<String> allMessages = listAllMessages();
-                        System.out.println("\n==Messages==");
-                        for (int i = 0; i < allMessages.size(); i++) {
-                            System.out.println((i + 1) + ": " + allMessages.get(i));
-                        }
-                    }
+                case "2" ->{
+                    List<String>allMessages = listAllMessages();
+                    System.out.println("==All Messages==\n");
+                   for (int i = 0; i < allMessages.size(); i++){
+                       System.out.println((i+1) +": "+ allMessages.get(i));
+                   }
+                }
                 case "3" -> running = false;
 
-                }
             }
+        }
         }
 
 
