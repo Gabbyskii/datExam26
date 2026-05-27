@@ -8,7 +8,6 @@ public class BankAccount {
     private String owner;
     private double balance;
     private ArrayList<String> transactionHistory;
-    private Scanner scan;
     private TextUI ui;
 
     public BankAccount(double balance, String owner) {
@@ -60,6 +59,7 @@ public class BankAccount {
 
         this.balance -= amount;
         target.balance += amount;
+
         transactionHistory.add("Transfer:  -" + amount + "kr to " + target.getOwner() + "  |  Balance: " + this.balance + "kr");
         target.transactionHistory.add("Transfer:  +" + amount + "kr from " +
                 this.getOwner() + "  |  Balance: " + target.balance + "kr");
@@ -89,32 +89,45 @@ public class BankAccount {
 
 
             String choice = ui.promptText("Choose: ");
-            switch (choice){
-                case "1"->{
-                    double dep = ui.promptNum("Deposit amount: ");
-                    account.deposit(dep);
+            switch (choice) {
+                    case "1" -> {
+                        try {
+                            double dep = ui.promptNum("Deposit amount: ");
+                            account.deposit(dep);
+                        } catch(IllegalArgumentException e){
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }
+                    case "2" -> {
+                        try {
+                            double wit = ui.promptNum("Withdraw amount: ");
+                            account.withdraw(wit);
+                        } catch (IllegalArgumentException e){
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }
+                    case "3" -> {
+                        try {
+                            double trans = ui.promptNum("Transfer amount: ");
+                            account.transfer(target, trans);
+                        } catch (IllegalArgumentException e){
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }
+                    case "4" -> {
+                        try {
+                            System.out.println("Exiting menu..");
+                            account.getTransactionsHistory();
+                            runs = false;
+                        } catch (IllegalArgumentException e){
+                            System.out.println("Error: " + e.getMessage());
+                        }
+                    }
+                    default -> System.out.println("Invalid!");
                 }
-                case "2" -> {
-                    double wit = ui.promptNum("Withdraw amount: ");
-                    account.withdraw(wit);
-                }
-                case "3" -> {
-                    double trans = ui.promptNum("Transfer amount: ");
-                    account.transfer(target, trans);
-                }
-                case "4" -> {
-                    System.out.println("Exiting menu..");
-                    account.getTransactionsHistory();
-                    runs = false;
-                }
-                default -> System.out.println("Invalid!");
-
-
             }
 
         }
-
-    }
 
 
 
