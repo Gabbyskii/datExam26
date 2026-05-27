@@ -62,7 +62,7 @@ public class PhoneBook {
 
 
     public void listAllContacts(){
-        System.out.println("==Contact list: "+ contacts.size() meto+"==");
+        System.out.println("==Contact list: "+ contacts.size()+"==");
         for (int i = 0; i < contacts.size(); i++){
             System.out.println((i+1) + " - " + contacts.get(i));
         }
