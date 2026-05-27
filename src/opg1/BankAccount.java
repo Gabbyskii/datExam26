@@ -71,6 +71,10 @@ public class BankAccount {
 
     public void getTransactionsHistory() {
         System.out.println("\n===Transaction History for " + owner + "===");
+        if (transactionHistory.isEmpty()) {
+            System.out.println("No transactions yet.");
+        }
+
         for (int i = 0; i < transactionHistory.size(); i++) {
             System.out.println((i+1)+ ". "+ transactionHistory.get(i));
         }
