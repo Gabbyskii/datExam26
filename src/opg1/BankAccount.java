@@ -23,9 +23,9 @@ public class BankAccount {
             throw new IllegalArgumentException("Amount insufficient! Has to be over 0.");
         }
         this.balance += amount;
-        transactionHistory.add("Deposit:  +" + amount + "kr  |  Balance: " + this.balance + "kr");
+        transactionHistory.add("Deposit:  +" + amount + "kr  \nBalance: " + this.balance + "kr");
         System.out.println("Money was deposited: " + amount +
-                ", New account balance for " + getOwner() + " is: " + this.balance + "kr");
+                " | New account balance for " + getOwner() + " is: " + this.balance + "kr");
 
     }
 
@@ -41,9 +41,9 @@ public class BankAccount {
         }
 
         this.balance -= amount;
-        transactionHistory.add("Withdrawal: -" + amount + "kr  |  Balance: " + this.balance + "kr");
+        transactionHistory.add("Withdrawal: -" + amount + "kr  \nBalance: " + this.balance + "kr");
         System.out.println("Money was withdrawn: " + amount +
-                ", New account balance for " + getOwner() + " is: " + this.balance + "kr");
+                " | New account balance for " + getOwner() + " is: " + this.balance + "kr");
     }
 
 
@@ -60,9 +60,10 @@ public class BankAccount {
         this.balance -= amount;
         target.balance += amount;
 
-        transactionHistory.add("Transfer:  -" + amount + "kr to " + target.getOwner() + "  |  Balance: " + this.balance + "kr");
-        target.transactionHistory.add("Transfer:  +" + amount + "kr from " +
-                this.getOwner() + "  |  Balance: " + target.balance + "kr");
+        transactionHistory.add("Transfer: -" + amount + "kr to " + target.getOwner() +
+                "\nBalance: " + this.balance + "kr");
+        target.transactionHistory.add("Transfer: +" + amount + "kr from " +
+                this.getOwner() + "\nBalance: " + target.balance + "kr");
         System.out.println(amount + "kr succesfully transfered to " + target);
 
     }
@@ -70,8 +71,8 @@ public class BankAccount {
 
     public void getTransactionsHistory() {
         System.out.println("\n===Transaction History for " + owner + "===");
-        for (String tran: transactionHistory) {
-            System.out.println("- "+ tran);
+        for (int i = 0; i < transactionHistory.size(); i++) {
+            System.out.println((i+1)+ ". "+ transactionHistory.get(i));
         }
         System.out.println("===End of history===");
     }
@@ -85,8 +86,6 @@ public class BankAccount {
             System.out.println("2. Withdraw money.");
             System.out.println("3. Transfer money.");
             System.out.println("4. Exit menu.\n");
-
-
 
             String choice = ui.promptText("Choose: ");
             switch (choice) {
