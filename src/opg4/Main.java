@@ -9,9 +9,7 @@ public class Main {
               new SmsNotifier("7654321"),
               new EmailNotifier("TGG@gmail.com"));
 
-       notifyAll(notis, "GTA VI finally outtt!!");
-
-
+       notifyAll(notis, "GTA VI is finally outtt!!");
 
 
 
@@ -20,10 +18,15 @@ public class Main {
 
 
     static void notifyAll(List<Notifier> notifiers, String message){
+        if (notifiers.isEmpty()){
+            throw new IllegalArgumentException("List empty..");
+        }
         for (Notifier noti: notifiers){
             noti.send(message);
         }
 
     }
+
+
 
 }

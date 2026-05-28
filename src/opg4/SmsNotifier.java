@@ -11,10 +11,13 @@ public class SmsNotifier implements Notifier {
 
     @Override
     public void send(String message) {
+        if (message == null){
+            throw new IllegalArgumentException("No messages yet...");
+        }
         if (message.length()> 160){
             message = message.substring(0, 160);
         }
-        System.out.println("SMS t0 " + phoneNumber + ": " + message);
+        System.out.println("SMS to " + phoneNumber + ": " + message);
     }
 
 }

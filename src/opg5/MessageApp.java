@@ -39,7 +39,7 @@ public class MessageApp {
                 }
                 case "2" ->{
                     List<String>allMessages = listAllMessages();
-                    System.out.println("==All Messages==\n");
+                    System.out.println("==All Messages ("+ messages.size() +")==\n");
                    for (int i = 0; i < allMessages.size(); i++){
                        System.out.println((i+1) +": "+ allMessages.get(i));
                    }

@@ -24,10 +24,8 @@ public class SalesReader {
                 sales.add(salesNumber);
             }
 
-        }catch (NumberFormatException e){
+        }catch (FileNotFoundException e){
             System.out.println(e.getMessage());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         }
 
     }
@@ -53,6 +51,30 @@ public class SalesReader {
         }
         return max;
     }
+
+    public int min(){
+        int minimum = sales.get(0);
+        for (int min: sales){
+            if (min < minimum){
+                minimum = min;
+            }
+        }
+        return minimum;
+    }
+
+
+    public int monthsRevenueOver40000(){
+        int counter = 0;
+
+        for (int m: sales){
+           if (m > 40000){
+               counter++;
+           }
+        }
+
+        return counter;
+    }
+
 
 
 }
