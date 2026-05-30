@@ -12,7 +12,7 @@ public class SmsNotifier implements Notifier {
     @Override
     public void send(String message) {
         if (message == null){
-            throw new IllegalArgumentException("No messages yet...");
+            throw new IllegalArgumentException("No messages sent yet...");
         }
         if (message.length()> 160){
             message = message.substring(0, 160);

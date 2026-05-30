@@ -54,9 +54,10 @@ public class SalesReader {
 
     public int min(){
         int minimum = sales.get(0);
-        for (int min: sales){
-            if (min < minimum){
-                minimum = min;
+
+        for (int m: sales){
+            if (m < minimum){
+                minimum = m;
             }
         }
         return minimum;

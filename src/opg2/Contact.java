@@ -5,6 +5,12 @@ public class Contact {
     private int phoneNumber;
 
     public Contact(String name, int phoneNumber) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty!");
+        }
+        /*if (String.valueOf(phoneNumber).length() != 8) {
+            throw new IllegalArgumentException("Phone number must be 8 digits!");
+        }*/
         this.name = name;
         this.phoneNumber = phoneNumber;
     }

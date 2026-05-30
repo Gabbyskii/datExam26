@@ -23,8 +23,8 @@ public class PhoneBook {
 
 
     public Contact findByName(String name){
-        if (name == null ||name.isEmpty()){
-            throw new IllegalArgumentException("Name can't be empty!");
+        if (contacts.isEmpty()) {
+            throw new IllegalArgumentException("Phone book is empty!");
         }
 
         for (Contact c: contacts){
@@ -34,20 +34,6 @@ public class PhoneBook {
             }
         }
        return null;
-    }
-
-    public Contact findByPhoneNumber(int phoneNumber){
-        if (contacts.isEmpty() || (phoneNumber <= 0)){
-            throw new IllegalArgumentException("Phone number not valid!");
-        }
-
-        for (Contact c: contacts){
-            if (c.getPhoneNumber() == phoneNumber){
-                return c;
-            }
-        }
-
-        return null;
     }
 
     public Contact removeByName(String name){
@@ -70,34 +56,19 @@ public class PhoneBook {
     }
 
 
-    public void findAllByPartialName(String part){
-        ArrayList<Contact> parts = new ArrayList<>();
-
-        System.out.println("\nNames with parts '"+ part+"' in it:");
-        for (Contact c: contacts){
-            if (c.getName().contains(part)){
-                parts.add(c);
-            }
-        }
-
-        for (Contact c : parts){
-            System.out.println(c);
-        }
-
-    }
-
-
     public Contact update(String name, int newNumber) {
-        if (name == null || newNumber <= 0) {
-            throw new IllegalArgumentException("Contact info invalid!");
+        if (name == null || newNumber <=0){
+            throw new IllegalArgumentException("Invalid contact info!");
         }
 
-        Contact contactName = findByName(name);
-        if (contactName != null) {
-            contactName.setPhoneNumber(newNumber);
-            System.out.println("New number for "+ name + " is: "+ newNumber);
-        }
-        return contactName;
+       Contact newContact = findByName(name);
+       if (newContact != null){
+           newContact.setPhoneNumber(newNumber);
+           System.out.println("New number for "+ name +" is updated to: "+ newNumber);
+
+       }
+       return newContact;
+
     }
 
 

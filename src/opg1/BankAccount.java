@@ -23,7 +23,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Amount insufficient! Has to be over 0.");
         }
         this.balance += amount;
-        transactionHistory.add("Deposit:  +" + amount + "kr  \nBalance: " + this.balance + "kr");
+        transactionHistory.add("Deposit:  +" + amount + "kr  \nNew Balance: " + this.balance + "kr");
         System.out.println("Money was deposited: " + amount +
                 " | New account balance for " + getOwner() + " is: " + this.balance + "kr");
 
@@ -41,7 +41,7 @@ public class BankAccount {
         }
 
         this.balance -= amount;
-        transactionHistory.add("Withdrawal: -" + amount + "kr  \nBalance: " + this.balance + "kr");
+        transactionHistory.add("Withdrawal: -" + amount + "kr  \nNew Balance: " + this.balance + "kr");
         System.out.println("Money was withdrawn: " + amount +
                 " | New account balance for " + getOwner() + " is: " + this.balance + "kr");
     }
@@ -61,9 +61,10 @@ public class BankAccount {
         target.balance += amount;
 
         transactionHistory.add("Transfer: -" + amount + "kr to " + target.getOwner() +
-                "\nBalance: " + this.balance + "kr");
+                "\nNew Balance: " + this.balance + "kr");
         target.transactionHistory.add("Transfer: +" + amount + "kr from " +
-                this.getOwner() + "\nBalance: " + target.balance + "kr");
+                this.getOwner() + "\nNew Balance: " + target.balance + "kr");
+
         System.out.println(amount + "kr succesfully transfered to " + target);
 
     }
@@ -78,10 +79,11 @@ public class BankAccount {
         for (int i = 0; i < transactionHistory.size(); i++) {
             System.out.println((i+1)+ ". "+ transactionHistory.get(i));
         }
+        System.out.println("Final balance: "+ balance);
         System.out.println("===End of history===");
     }
 
-    public void bankMenu(BankAccount account, BankAccount target){
+    public void bankMenu(BankAccount account, BankAccount target) {
         boolean runs = true;
 
         while (runs){
@@ -93,45 +95,44 @@ public class BankAccount {
 
             String choice = ui.promptText("Choose: ");
             switch (choice) {
-                    case "1" -> {
-                        try {
-                            double dep = ui.promptNum("Deposit amount: ");
-                            account.deposit(dep);
-                        } catch(IllegalArgumentException e){
-                            System.out.println("Error: " + e.getMessage());
-                        }
+                case "1" -> {
+                    try {
+                        double dep = ui.promptNum("Deposit amount: ");
+                        account.deposit(dep);
+                    } catch(IllegalArgumentException e){
+                        System.out.println("Error: " + e.getMessage());
                     }
-                    case "2" -> {
-                        try {
-                            double wit = ui.promptNum("Withdraw amount: ");
-                            account.withdraw(wit);
-                        } catch (IllegalArgumentException e){
-                            System.out.println("Error: " + e.getMessage());
-                        }
-                    }
-                    case "3" -> {
-                        try {
-                            double trans = ui.promptNum("Transfer amount: ");
-                            account.transfer(target, trans);
-                        } catch (IllegalArgumentException e){
-                            System.out.println("Error: " + e.getMessage());
-                        }
-                    }
-                    case "4" -> {
-                        try {
-                            System.out.println("Exiting menu..");
-                            account.getTransactionsHistory();
-                            runs = false;
-                        } catch (IllegalArgumentException e){
-                            System.out.println("Error: " + e.getMessage());
-                        }
-                    }
-                    default -> System.out.println("Invalid!");
                 }
+                case "2" -> {
+                    try {
+                        double wit = ui.promptNum("Withdraw amount: ");
+                        account.withdraw(wit);
+                    } catch (IllegalArgumentException e){
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                case "3" -> {
+                    try {
+                        double trans = ui.promptNum("Transfer amount: ");
+                        account.transfer(target, trans);
+                    } catch (IllegalArgumentException e){
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                case "4" -> {
+                    try {
+                        System.out.println("Exiting menu..");
+                        account.getTransactionsHistory();
+                        runs = false;
+                    } catch (IllegalArgumentException e){
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
+                default -> System.out.println("Invalid!");
             }
-
         }
 
+    }
 
 
     public String getOwner() {

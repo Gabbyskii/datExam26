@@ -13,7 +13,7 @@ public class SlackNotifier implements Notifier {
     @Override
     public void send(String message) {
         if (message == null){
-            throw new IllegalArgumentException("No messages yet...");
+            throw new IllegalArgumentException("No messages sent yet...");
         }
         System.out.println(channel + ": " + message);
     }

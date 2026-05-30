@@ -38,10 +38,9 @@ public class MessageApp {
                     System.out.println("Message sent!");
                 }
                 case "2" ->{
-                    List<String>allMessages = listAllMessages();
                     System.out.println("==All Messages ("+ messages.size() +")==\n");
-                   for (int i = 0; i < allMessages.size(); i++){
-                       System.out.println((i+1) +": "+ allMessages.get(i));
+                   for (int i = 0; i < messages.size(); i++){
+                       System.out.println((i+1) +": "+ messages.get(i));
                    }
                 }
                 case "3" -> running = false;
